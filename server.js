@@ -1,10 +1,11 @@
+import 'dotenv/config';
 import express from 'express';
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
 app.use(express.static('public'));
 
-const macIp = '192.168.0.15';
+const macIp = process.env.macIp;
 
 app.listen(port, macIp, () => {
     console.log(`listening on port ${port}`);
