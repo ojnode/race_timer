@@ -1,0 +1,46 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#layout {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 
+        "header"
+        "center"
+        "footer";
+    height: 100%;
+}
+
+#header {
+    display: flex;
+    justify-content: center;
+    background-color: beige;
+}
+
+#center {
+    grid-area: center;
+    align-self: center;
+    justify-self: center;
+}
+
+#footer {
+    grid-area: footer;
+    align-self: baseline;
+    text-align: center;
+    background-color: beige;
+}
+
+button {
+  background-color: rgb(65, 65, 212);
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bolder;
+  padding: 6px 16px;
+}
+
+button.active {
+  background-color: #8e86ba;
+}
