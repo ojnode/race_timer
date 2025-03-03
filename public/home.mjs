@@ -1,19 +1,8 @@
-export function addButton(parentElement, textContent) {
-    const createRace = document.querySelector(`#${parentElement}`);
-    const button = document.createElement('button');
-    button.textContent = textContent;
-    createRace.append(button);
-    return button;
-}
+import * as util from './utils.js';
 
 function homepage() {
-    const button = addButton("center", "Create race");
-    button.addEventListener('touchstart', () => {
-        button.classList.toggle('active');
-    });
-    button.addEventListener('touchend', () => {
-        button.classList.toggle('active');
-    });
+    const button = util.addButton("center", "Create race");
+    util.touchEffect(button);
 }
 
 document.addEventListener("DOMContentLoaded", homepage);
