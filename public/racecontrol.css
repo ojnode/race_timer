@@ -4,7 +4,11 @@ html, body {
     height: 100%;
 }
 
-/* remove pixels */
+h3 {
+    font-size: larger;
+    font-family: sans-serif;
+}
+
 #layout {
     display: grid;
     grid-template-rows: auto 1fr auto;
@@ -23,27 +27,36 @@ html, body {
 }
 
 #center {
+    text-align: center;
     align-self: center;
-    justify-self: center;
+}
+
+.register {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
+}
+
+.grid-col-span-2 {
+    grid-column: span 2;
 }
 
 #footer {
-    align-self: baseline;
     text-align: center;
     background-color:  rgb(94, 138, 203);
     font-size: 1rem;
 }
 
-button {
+input {
   background-color: rgb(65, 65, 212);
   color:white;
-  border-radius: 50%;
+  border-radius: 50px;
   border: .5rem solid;
-  /* padding: .05rem .05rem; */
+  padding: 1rem 1rem;
   font-weight: 5rem;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
 }
 
-button.active {
+input.active {
   background-color: #8e86ba;
 }
