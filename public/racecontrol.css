@@ -16,19 +16,18 @@ h3 {
         "header"
         "center"
         "footer";
-    height: 100%;
+    height: 100%; 
+    text-align: center;  
 }
 
 #header {
-    display: grid;
-    justify-content: center;
     background-color: rgb(94, 138, 203);
     font-size: 1.2rem;
 }
 
 #center {
-    text-align: center;
     align-self: center;
+    background-color: red !important;
 }
 
 .register {
@@ -42,7 +41,6 @@ h3 {
 }
 
 #footer {
-    text-align: center;
     background-color:  rgb(94, 138, 203);
     font-size: 1rem;
 }
