@@ -1,0 +1,60 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; 
+}
+
+h3 {
+    font-size: large;
+    font-family: sans-serif;
+}
+
+#layout {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 
+        "header"
+        "center"
+        "footer";
+    height: 100%; 
+    text-align: center;  
+}
+
+#header {
+    background-color: rgb(94, 138, 203);
+    font-size: 1.2rem;
+}
+
+#center {
+    align-self: center;
+}
+
+.register {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.grid-col-span-2 {
+    grid-column: span 2;
+}
+
+#footer {
+    background-color:  rgb(94, 138, 203);
+    font-size: 1rem;
+}
+
+input {
+  background-color: rgb(65, 65, 212);
+  color:black;
+  border-radius: 50px;
+  border: .5rem solid;
+  padding: 1rem 1rem;
+  font-weight: 4rem;
+  font-size: 1.7rem;
+}
+
+input.active {
+  background-color: #8e86ba;
+}
