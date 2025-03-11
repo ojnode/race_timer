@@ -6,8 +6,17 @@ function prepareHandles() {
     em.done = document.querySelector('#done');
 }
 
-function sendDetails() {
-    console.log(`message: ${em.input.value}`);
+async function storeRunner() {
+    const method = 'POST';
+    const headers = { 'Content-Type': 'application/json' };
+    const body = JSON.stringify({runnerName: em.input.value});
+    const options = { method, headers, body }
+
+    const response = await fetch('runner', options);
+
+    if (!response.ok) {
+        console.log('failed to save', response);
+    }
 }
 
 function addEventListeners() {
@@ -17,7 +26,17 @@ function addEventListeners() {
 
     em.next.addEventListener("touchend", () => {
         em.next.classList.toggle('active');
-        sendDetails();
+        storeRunner();
+    });
+
+    em.done.addEventListener("touchstart", () => {
+        em.next.classList.toggle('active');
+    });
+
+    em.done.addEventListener("touchend", () => {
+        em.next.classList.toggle('active');
+        storeRunner();
+        window.location.href = `./startrace.html`;
     });
 }
 
