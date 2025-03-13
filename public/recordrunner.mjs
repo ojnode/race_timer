@@ -21,7 +21,7 @@ async function storeRunner() {
         console.log('failed to save', response);
     }
 
-    em.saverunner.shadowRoot.querySelector('h4').innerText = `${em.input.value} saved`;
+    em.saverunner.name = `${em.input.value}`;
 }
 
 function saveButton() {
@@ -64,14 +64,15 @@ template.innerHTML = `<div>
 class Savedrunner extends HTMLElement {
     constructor() {
         super();
-
+        
         this.attachShadow({ mode: 'open' });
-        this.shadowRoot.appendChild(template.content.
-        cloneNode(true));
-        this.shadowRoot.querySelector('h4').innerText = 
-        '';
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
+    set name(value) {
+        this.shadowRoot.querySelector('h4').innerText = 
+        `${value}`;
+    }
 }
 
 window.customElements.define('saved-runner', Savedrunner);
