@@ -2,8 +2,11 @@ const em = {}
 
 function prepareHandles() {
     em.input = document.querySelector('#reg');
-    em.next = document.querySelector('#next');
-    em.done = document.querySelector('#done');
+    em.save = document.querySelector('#save');
+    em.start = document.querySelector('#start');
+    em.layout = document.querySelector('#layout');
+    em.template = document.querySelector('#playersaved'); 
+    em.saverunner = document.querySelector('#saverunner');
 }
 
 async function storeRunner() {
@@ -17,32 +20,60 @@ async function storeRunner() {
     if (!response.ok) {
         console.log('failed to save', response);
     }
+
+    em.saverunner.shadowRoot.querySelector('h4').innerText = `${em.input.value} saved`;
 }
 
-function addEventListeners() {
-    em.next.addEventListener("touchstart", () => {
-        em.next.classList.toggle('active');
+function saveButton() {
+    em.save.addEventListener("touchstart", () => {
+        em.save.classList.toggle('active');
     });
 
-    em.next.addEventListener("touchend", () => {
-        em.next.classList.toggle('active');
+    em.save.addEventListener("touchend", () => {
+        em.save.classList.toggle('active');
         storeRunner();
     });
+}
 
-    em.done.addEventListener("touchstart", () => {
-        em.next.classList.toggle('active');
+function startButton() {
+    em.start.addEventListener("touchstart", () => {
+        em.start.classList.toggle('active');
     });
 
-    em.done.addEventListener("touchend", () => {
-        em.next.classList.toggle('active');
-        storeRunner();
+    em.start.addEventListener("touchend", () => {
+        em.start.classList.toggle('active');
         window.location.href = `./startrace.html`;
     });
 }
 
-function recordRunner () {
+function addEventListeners() {
+    saveButton();
+    startButton();
+}
+
+function recordRunner() {
     prepareHandles();
     addEventListeners();
 }
+
+const template = document.createElement('template');
+template.innerHTML = `<div>
+    <h4></h4>
+</div>`
+
+class Savedrunner extends HTMLElement {
+    constructor() {
+        super();
+
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.appendChild(template.content.
+        cloneNode(true));
+        this.shadowRoot.querySelector('h4').innerText = 
+        '';
+    }
+
+}
+
+window.customElements.define('saved-runner', Savedrunner);
 
 document.addEventListener("DOMContentLoaded", recordRunner);
