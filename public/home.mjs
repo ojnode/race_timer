@@ -1,4 +1,5 @@
 import * as util from './utils.js';
+
 const em = {}
 
 function prepareHandles() {
@@ -6,12 +7,7 @@ function prepareHandles() {
 }
 
 function addEventListeners() {
-    em.createRace.addEventListener("touchstart", () => {
-        em.createRace.classList.toggle('active');
-    });
-
-    em.createRace.addEventListener("touchend", () => {
-        em.createRace.classList.toggle('active');
+    util.setupButtons(em.createRace, () => {
         window.location.href = `./recordrunner.html`;
     })
 }
