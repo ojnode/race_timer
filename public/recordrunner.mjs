@@ -1,3 +1,5 @@
+import * as util from './utils.js';
+
 const em = {}
 
 function prepareHandles() {
@@ -21,34 +23,16 @@ async function storeRunner() {
         console.log('failed to save', response);
     }
 
-    em.saverunner.name = `${em.input.value}`;
-}
-
-function saveButton() {
-    em.save.addEventListener("touchstart", () => {
-        em.save.classList.toggle('active');
-    });
-
-    em.save.addEventListener("touchend", () => {
-        em.save.classList.toggle('active');
-        storeRunner();
-    });
-}
-
-function startButton() {
-    em.start.addEventListener("touchstart", () => {
-        em.start.classList.toggle('active');
-    });
-
-    em.start.addEventListener("touchend", () => {
-        em.start.classList.toggle('active');
-        window.location.href = `./startrace.html`;
-    });
+    if (em.input.value) {
+        em.saverunner.name = `${em.input.value}`;
+    }
 }
 
 function addEventListeners() {
-    saveButton();
-    startButton();
+    util.setupButtons(em.save, storeRunner);
+    util.setupButtons(em.start, () => {
+        window.location.href = `./startrace.html`;
+    });
 }
 
 function recordRunner() {
@@ -57,8 +41,9 @@ function recordRunner() {
 }
 
 const template = document.createElement('template');
-template.innerHTML = `<div>
-    <h4></h4>
+template.innerHTML = `
+<div>
+    <h4 style= "color: red"></h4>
 </div>`
 
 class Savedrunner extends HTMLElement {
@@ -71,7 +56,7 @@ class Savedrunner extends HTMLElement {
 
     set name(value) {
         this.shadowRoot.querySelector('h4').innerText = 
-        `${value}`;
+        `${value} saved`;
     }
 }
 
